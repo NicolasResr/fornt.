@@ -1,0 +1,97 @@
+.produtos-container {
+    padding: 40px;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  
+  .banner {
+    height: 200px;
+    background-image: url('/caminho/para/sua/imagem-de-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    margin-bottom: 40px;
+  }
+  
+  .banner-overlay {
+    background-color: rgba(255, 255, 255, 0.8);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .banner-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #000;
+    margin: 0;
+  }
+  
+  .breadcrumb {
+    font-size: 14px;
+    color: #555;
+    margin-top: 8px;
+  }
+  
+  .produtos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+  }
+  
+  .produto-card {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .produto-card:hover {
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  }
+  
+  .produto-img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+  }
+  
+  .produto-info {
+    padding: 16px;
+  }
+  
+  .produto-nome {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #222;
+  }
+  
+  .produto-preco {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .pedido-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pedido-button:hover {
+    background-color: #0056b3;
+  }
+  

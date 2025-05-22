@@ -1,30 +1,52 @@
-// src/pages/Produtos.jsx
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaClipboardList } from "react-icons/fa";  // ✅ Ícone
 import axios from "axios";
+import '../styles/Produto.css'; // Importa o CSS
 
 export default function Produtos() {
   const [produtos, setProdutos] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get("http://localhost:8080/produto")
-      .then(response => {
-        setProdutos(response.data);
-      })
-      .catch(error => {
-        console.error("Erro ao buscar produtos:", error);
-      });
+      .then(response => setProdutos(response.data))
+      .catch(error => console.error("Erro ao buscar produtos:", error));
   }, []);
 
+  const formatarPreco = (valor) => {
+    if (!valor) return "Rp 0";
+    return "Rp " + valor.toLocaleString("id-ID");
+  };
+
+  const irParaPedido = () => {
+    navigate('/pedido');
+  };
+
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold text-green-700 mb-6">Produtos</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="produtos-container">
+      {/* Botão para Pedido */}
+      <button className="pedido-button" onClick={irParaPedido}>
+        <FaClipboardList size={20} style={{ marginRight: '8px' }} />
+      </button>
+
+      {/* Banner */}
+      <div className="banner">
+        <div className="banner-overlay">
+          <h1 className="banner-title">Shop</h1>
+          <p className="breadcrumb">Home &gt; Shop</p>
+        </div>
+      </div>
+
+      {/* Lista de Produtos */}
+      <div className="produtos-grid">
         {produtos.map(prod => (
-          <div key={prod.id} className="border rounded-xl shadow p-4 bg-white">
-            <img src={prod.imgUrl} alt={prod.nome} className="w-full h-48 object-cover rounded" />
-            <h2 className="text-xl font-semibold mt-2">{prod.nome}</h2>
-            <p className="text-gray-600 text-sm">{prod.descricao}</p>
-            <p className="text-green-600 font-bold mt-2">R$ {prod.preco?.toFixed(2)}</p>
+          <div key={prod.id} className="produto-card">
+            <img src={prod.imgUrl} alt={prod.nome} className="produto-img" />
+            <div className="produto-info">
+              <h2 className="produto-nome">{prod.nome}</h2>
+              <p className="produto-preco">{formatarPreco(prod.preco)}</p>
+            </div>
           </div>
         ))}
       </div>
